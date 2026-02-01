@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <title>Thư Bất Ngờ</title>
+    <style>
+        :root {
+            --color-env: #ffb7b2; 
+            --color-env2: #ff9aa2; 
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #ededed;
+            margin: 0;
+        }
+
+        .envelope-wrapper {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .envelope {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            background-color: var(--color-env);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            z-index: 1;
+        }
+
+        /* Nắp bao thư */
+        .envelope::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            z-index: 4; /* Nằm trên cùng khi đóng */
+            border-top: 130px solid var(--color-env2);
+            border-left: 150px solid transparent;
+            border-right: 150px solid transparent;
+            transform-origin: top;
+            transition: transform 0.4s ease;
+        }
+
+        /* Tờ thư bên trong */
+        .letter {
+            position: absolute;
+            bottom: 5px;
+            left: 5%;
+            width: 90%;
+            height: 90%;
+            background: white;
+            padding: 10px;
+            box-sizing: border-box;
+            transition: transform 0.5s ease;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .letter img {
+            width: 100%;
+            height: auto; /* Tự động điều chỉnh để không đè chữ */
+            max-height: 120px; 
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .letter p {
+            font-size: 14px;
+            color: #333;
+            margin: 0;
+            font-family: sans-serif;
+            font-weight: bold;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        /* Các cạnh bao thư */
+        .envelope::after {
+            content: "";
+            position: absolute;
+            z-index: 3;
+            width: 0; height: 0;
+            border-top: 100px solid transparent;
+            border-right: 150px solid var(--color-env);
+            border-bottom: 100px solid var(--color-env);
+            border-left: 150px solid var(--color-env);
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+        }
+
+        /* Hiệu ứng mở */
+        .envelope-wrapper:hover .envelope::before {
+            transform: rotateX(180deg);
+            z-index: 0;
+        }
+
+        .envelope-wrapper:hover .letter {
+            transform: translateY(-120px); /* Đẩy thư lên cao để thấy chữ */
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="envelope-wrapper">
+        <div class="envelope">
+            <div class="letter">
+                <img src="Screenshot_29.png" alt="Ảnh kỷ niệm">
+                <p>ĐM AN QUÁT</p> 
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
